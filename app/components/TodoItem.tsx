@@ -20,6 +20,7 @@ export const TodoItem: React.FC<TodoItemProps> = ({
     <List.Item
       title={todo.text}
       titleStyle={[styles.title, todo.completed && styles.completed]}
+      style={styles.listItem}
       left={_ => (
         <IconButton
           icon={
@@ -27,6 +28,7 @@ export const TodoItem: React.FC<TodoItemProps> = ({
           }
           selected={todo.completed}
           onPress={() => onToggle(todo.id)}
+          size={20}
         />
       )}
       right={_ => (
@@ -34,6 +36,7 @@ export const TodoItem: React.FC<TodoItemProps> = ({
           icon="delete"
           iconColor="#F44336"
           onPress={() => onDelete(todo.id)}
+          size={20}
         />
       )}
     />
@@ -42,10 +45,14 @@ export const TodoItem: React.FC<TodoItemProps> = ({
 
 const styles = StyleSheet.create({
   title: {
-    fontSize: 16,
+    fontSize: 14,
   },
   completed: {
     textDecorationLine: 'line-through',
     color: '#888',
+  },
+  listItem: {
+    paddingVertical: 4,
+    paddingLeft: 20,
   },
 });

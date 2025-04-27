@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { ScrollView, StyleSheet } from 'react-native';
-import { Divider, List, Surface, Text } from 'react-native-paper';
+import { List, Surface, Text } from 'react-native-paper';
 
 import { TodoInput } from './TodoInput';
 import { TodoItem } from './TodoItem';
@@ -22,12 +22,11 @@ export const TodoList: React.FC<TodoListProps> = ({
   return (
     <Surface style={styles.container} elevation={0}>
       <TodoInput onAdd={onAdd} />
-      <Divider />
       {todos.length === 0 ? (
         <Text style={styles.noTodos}>No todos yet</Text>
       ) : (
         <ScrollView>
-          <List.Section>
+          <List.Section style={styles.listSection}>
             {todos.map(todo => (
               <TodoItem
                 key={todo.id}
@@ -52,5 +51,8 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: 20,
     color: '#666',
+  },
+  listSection: {
+    padding: 0,
   },
 });
