@@ -33,39 +33,47 @@ export const TodoInput: React.FC<TodoInputProps> = ({ onAdd }) => {
   };
 
   return (
-    <Surface style={styles.container}>
-      <TextInput
-        mode="outlined"
-        value={text}
-        onChangeText={handleTextChange}
-        placeholder="Add a new todo"
-        maxLength={50}
-        returnKeyType="done"
-        enablesReturnKeyAutomatically
-        onSubmitEditing={handleAdd}
-        autoCorrect={false}
-        right={<TextInput.Affix text={`${text.length}/50`} />}
-      />
-      <Button
-        mode="contained"
-        onPress={handleAdd}
-        disabled={!text.trim()}
-        style={styles.button}
-      >
-        Add
-      </Button>
+    <Surface style={styles.container} elevation={0}>
+      <Surface style={styles.inputContainer} elevation={0}>
+        <TextInput
+          mode="outlined"
+          value={text}
+          onChangeText={handleTextChange}
+          placeholder="Add a new todo"
+          maxLength={50}
+          right={<TextInput.Affix text={`${text.length}/50`} />}
+          style={styles.input}
+          autoCorrect={false}
+          onSubmitEditing={handleAdd}
+        />
+        <Button
+          mode="contained"
+          onPress={handleAdd}
+          disabled={!text.trim()}
+          style={styles.button}
+        >
+          Add
+        </Button>
+      </Surface>
     </Surface>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
+    width: '100%',
+    padding: 16,
+  },
+  inputContainer: {
     flexDirection: 'row',
-    padding: 10,
-    elevation: 0,
+    alignItems: 'center',
+    gap: 8,
+  },
+  input: {
+    flex: 1,
   },
   button: {
-    marginLeft: 10,
+    minWidth: 80,
     justifyContent: 'center',
   },
 });
