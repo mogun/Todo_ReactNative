@@ -5,7 +5,7 @@ import {
   StyleSheet,
   Text,
 } from 'react-native';
-import { Provider as PaperProvider, Surface } from 'react-native-paper';
+import { Provider as PaperProvider } from 'react-native-paper';
 
 import { TodoList } from './app/components/TodoList';
 import { useTodos } from './app/hooks/useTodos';
@@ -32,11 +32,7 @@ export default function App() {
     >
       <SafeAreaView style={styles.container}>
         <Text style={styles.title}>Todo List</Text>
-        {error && (
-          <Surface style={styles.errorContainer} elevation={1}>
-            <Text style={styles.errorText}>{error}</Text>
-          </Surface>
-        )}
+        {error && <Text style={styles.errorText}>{error}</Text>}
         <TodoList
           todos={todos}
           onToggle={toggleTodo}
@@ -65,14 +61,9 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#666',
   },
-  errorContainer: {
-    margin: 10,
-    padding: 10,
-    backgroundColor: '#ffebeb',
-    borderRadius: 8,
-  },
   errorText: {
     color: '#ff3b30',
     textAlign: 'center',
+    marginBottom: 10,
   },
 });
