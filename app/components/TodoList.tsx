@@ -11,17 +11,9 @@ interface TodoListProps {
 }
 
 export const TodoList: React.FC<TodoListProps> = ({todos, onToggle, onDelete, onAdd}) => {
-  const [text, setText] = useState('');
-
-  const handleAdd = () => {
-    if (text.trim()) {
-      onAdd(text);
-      setText('');
-    }
-  }
-
   return (
     <View style={styles.container}>
+      <TodoInput onAdd={onAdd} />
       {todos.map((todo) => (
         <TodoItem
           key={todo.id}
@@ -30,7 +22,6 @@ export const TodoList: React.FC<TodoListProps> = ({todos, onToggle, onDelete, on
           onDelete={onDelete}
         />
       ))}
-      <TodoInput onAdd={handleAdd} />
     </View>
   )
 }
