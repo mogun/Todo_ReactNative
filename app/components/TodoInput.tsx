@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
-import { Alert, StyleSheet, View } from 'react-native';
-import { Button, TextInput } from 'react-native-paper';
+import { Alert, StyleSheet } from 'react-native';
+import { Button, Surface, TextInput } from 'react-native-paper';
 
 interface TodoInputProps {
   onAdd: (text: string) => void;
@@ -33,7 +33,7 @@ export const TodoInput: React.FC<TodoInputProps> = ({ onAdd }) => {
   };
 
   return (
-    <View style={styles.container}>
+    <Surface style={styles.container}>
       <TextInput
         mode="outlined"
         value={text}
@@ -46,10 +46,15 @@ export const TodoInput: React.FC<TodoInputProps> = ({ onAdd }) => {
         autoCorrect={false}
         right={<TextInput.Affix text={`${text.length}/50`} />}
       />
-      <Button mode="contained" onPress={handleAdd} disabled={!text.trim()}>
+      <Button
+        mode="contained"
+        onPress={handleAdd}
+        disabled={!text.trim()}
+        style={styles.button}
+      >
         Add
       </Button>
-    </View>
+    </Surface>
   );
 };
 
@@ -57,5 +62,10 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     padding: 10,
+    elevation: 0,
+  },
+  button: {
+    marginLeft: 10,
+    justifyContent: 'center',
   },
 });

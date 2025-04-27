@@ -19,42 +19,33 @@ export const TodoItem: React.FC<TodoItemProps> = ({
   return (
     <List.Item
       title={todo.text}
-      left={() => (
+      titleStyle={[styles.title, todo.completed && styles.completed]}
+      left={_ => (
         <IconButton
-          icon={todo.completed ? 'check-circle' : 'circle-outline'}
+          icon={
+            todo.completed ? 'check-circle' : 'checkbox-blank-circle-outline'
+          }
+          selected={todo.completed}
           onPress={() => onToggle(todo.id)}
         />
       )}
-      right={() => (
-        <IconButton icon="delete" onPress={() => onDelete(todo.id)} />
+      right={_ => (
+        <IconButton
+          icon="delete"
+          iconColor="#F44336"
+          onPress={() => onDelete(todo.id)}
+        />
       )}
-      titleStyle={todo.completed ? styles.completed : undefined}
     />
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    padding: 15,
-    borderBottomWidth: 1,
-    borderBottomColor: '#ddd',
-  },
-  text: {
-    flex: 1,
+  title: {
     fontSize: 16,
   },
   completed: {
     textDecorationLine: 'line-through',
     color: '#888',
-  },
-  deleteButton: {
-    color: 'red',
-  },
-  toggleContainer: {
-    width: 20,
-    height: 20,
-    borderRadius: 10,
   },
 });
