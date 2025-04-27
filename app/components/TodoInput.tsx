@@ -36,7 +36,6 @@ export const TodoInput: React.FC<TodoInputProps> = ({ onAdd }) => {
     <View style={styles.container}>
       <TextInput
         mode="outlined"
-        // style={styles.input}
         value={text}
         onChangeText={handleTextChange}
         placeholder="Add a new todo"
