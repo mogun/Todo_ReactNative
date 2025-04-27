@@ -10,7 +10,7 @@ export const TodoInput: React.FC<TodoInputProps> = ({onAdd}) => {
 
   const handleAdd = () => {
     if (text.trim()) {
-      onAdd(text);
+      onAdd(text.trim());
       setText('');
     }
   }
@@ -19,12 +19,12 @@ export const TodoInput: React.FC<TodoInputProps> = ({onAdd}) => {
     <View style={styles.container}>
       <TextInput
         style={styles.input}
-        placeholder="Add a new todo"
         value={text}
         onChangeText={setText}
+        placeholder="Add a new todo"
       />
       <TouchableOpacity style={styles.addButton} onPress={handleAdd}>
-        <Text style={styles.addButton}>Add</Text>
+        <Text style={styles.addButtonText}>Add</Text>
       </TouchableOpacity>
     </View>
   )
@@ -33,22 +33,23 @@ export const TodoInput: React.FC<TodoInputProps> = ({onAdd}) => {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    alignItems: 'center',
-    padding: 15,
-    borderBottomWidth: 1,
-    borderBottomColor: '#ddd',
+    padding: 10,
   },
   input: {
     flex: 1,
-    height: 40,
     borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: 5,
-    paddingHorizontal: 10,
+    borderColor: '#ddd',
+    padding: 10,
     marginRight: 10,
+    borderRadius: 5,
   },
   addButton: {
     backgroundColor: '#007bff',
-    paddingVertical: 10,
-  }
+    padding: 10,
+    borderRadius: 5,
+    justifyContent: 'center',
+  },
+  addButtonText: {
+    color: '#fff',
+  },
 });
