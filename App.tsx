@@ -1,56 +1,35 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, ActivityIndicator } from 'react-native';
 import { TodoList } from './app/components/TodoList';
 import { useState, useEffect } from 'react';
 import { Todo } from './app/types/todo';
 import uuid from "react-native-uuid";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
-const TODOS_STORAGE_KEY = '@todos';
+import { useTodos } from './app/hooks/useTodos';
 
 export default function App() {
-  const [todos, setTodos] = useState<Todo[]>([]);
+  const { todos, loading, error, addTodo, toggleTodo, deleteTodo } = useTodos();
 
-  useEffect(() => {
-    const loadTodos = async () => {
-      const storedTodos = await AsyncStorage.getItem(TODOS_STORAGE_KEY);
-      if (storedTodos) {
-        setTodos(JSON.parse(storedTodos));
-      }
-    }
-    loadTodos();
-  }, []);
-
-  useEffect(() => {
-    const saveTodos = async () => {
-      await AsyncStorage.setItem(TODOS_STORAGE_KEY, JSON.stringify(todos));
-    }
-    saveTodos();
-  }, [todos]);
-
-  const handleToggle = (id: string) => {
-    setTodos(todos.map((todo) => todo.id === id ? {...todo, completed: !todo.completed} : todo));
+  if (loading) {
+    return (
+      <SafeAreaView style={styles.container}>
+        <ActivityIndicator size="large" color="#0000ff" />
+      </SafeAreaView>
+    )
   }
 
-  const handleDelete = (id: string) => {
-    setTodos(todos.filter((todo) => todo.id !== id));
-  }
-
-  const handleAdd = (text: string) => {
-    setTodos([...todos, {id: uuid.v4().toString(), text, completed: false}]);
-  }
-  
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <Text style={styles.title}>Todo List</Text>
+      {error && <Text style={styles.errorText}>{error}</Text>}
       <TodoList
         todos={todos}
-        onToggle={handleToggle}
-        onDelete={handleDelete}
-        onAdd={handleAdd}
+        onToggle={toggleTodo}
+        onDelete={deleteTodo}
+        onAdd={addTodo}
       />
       <StatusBar style="auto" />
-    </View>
+    </SafeAreaView>
   );
 }
 
@@ -58,11 +37,18 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    paddingTop: 70,
-    alignItems: 'center',
   },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
+    textAlign: 'center',
+    marginVertical: 20,
+  },
+  errorText: {
+    color: '#ff3b30',
+    textAlign: 'center',
+    marginBottom: 10,
+    padding: 10,
+    backgroundColor: '#ffebeb',
   },
 });

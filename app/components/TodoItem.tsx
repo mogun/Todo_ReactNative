@@ -17,6 +17,13 @@ export const TodoItem: React.FC<TodoItemProps> = ({todo, onToggle, onDelete}) =>
       <TouchableOpacity onPress={() => onDelete(todo.id)}>
         <Text style={styles.deleteButton}>Delete</Text>
       </TouchableOpacity>
+      <TouchableOpacity 
+        style={styles.toggleContainer}
+        onPress={() => onToggle(todo.id)}
+        accessible={true}
+        accessibilityLabel={`${todo.text}、${todo.completed ? '完了済み' : '未完了'}のタスク`}
+        accessibilityHint={`タップして${todo.completed ? '未完了' : '完了済み'}に変更`}
+      ></TouchableOpacity>
     </View>
   )
 }
@@ -39,5 +46,10 @@ const styles = StyleSheet.create({
   },
   deleteButton: {
     color: 'red',
+  },
+  toggleContainer: {
+    width: 20,
+    height: 20,
+    borderRadius: 10,
   },
 });
