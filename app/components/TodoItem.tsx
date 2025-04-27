@@ -1,7 +1,9 @@
 import React from 'react';
+
 import { StyleSheet } from 'react-native';
+import { IconButton, List } from 'react-native-paper';
+
 import { Todo } from '../types/todo';
-import { List, IconButton } from 'react-native-paper';
 
 interface TodoItemProps {
   todo: Todo;

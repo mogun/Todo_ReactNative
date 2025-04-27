@@ -1,8 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, SafeAreaView, ActivityIndicator } from 'react-native';
+import { ActivityIndicator, SafeAreaView, StyleSheet, Text } from 'react-native';
+import { Provider as PaperProvider } from 'react-native-paper';
+
 import { TodoList } from './app/components/TodoList';
 import { useTodos } from './app/hooks/useTodos';
-import { Provider as PaperProvider } from 'react-native-paper';
 
 export default function App() {
   const { todos, loading, error, addTodo, toggleTodo, deleteTodo } = useTodos();

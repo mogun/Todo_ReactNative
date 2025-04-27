@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, Alert } from 'react-native';
-import { TextInput, Button } from 'react-native-paper';
+
+import { Alert, StyleSheet, View } from 'react-native';
+import { Button, TextInput } from 'react-native-paper';
 
 interface TodoInputProps {
   onAdd: (text: string) => void;

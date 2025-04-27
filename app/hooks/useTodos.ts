@@ -1,7 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
+
+import uuid from 'react-native-uuid';
+
 import { Todo } from '../types/todo';
 import { storage } from '../utils/storage';
-import uuid from 'react-native-uuid';
 
 export const useTodos = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
@@ -18,7 +20,7 @@ export const useTodos = () => {
       const loadedTodos = await storage.loadTodos();
       setTodos(loadedTodos);
       setError(null);
-    } catch (e) {
+    } catch (_e) {
       setError('Todoの読み込みに失敗しました');
     } finally {
       setLoading(false);
@@ -38,7 +40,7 @@ export const useTodos = () => {
       await storage.saveTodos(updatedTodos);
       setTodos(updatedTodos);
       setError(null);
-    } catch (e) {
+    } catch (_e) {
       setError('Todoの追加に失敗しました');
     }
   };
@@ -51,7 +53,7 @@ export const useTodos = () => {
       await storage.saveTodos(updatedTodos);
       setTodos(updatedTodos);
       setError(null);
-    } catch (e) {
+    } catch (_e) {
       setError('Todoの更新に失敗しました');
     }
   };
@@ -62,7 +64,7 @@ export const useTodos = () => {
       await storage.saveTodos(updatedTodos);
       setTodos(updatedTodos);
       setError(null);
-    } catch (e) {
+    } catch (_e) {
       setError('Todoの削除に失敗しました');
     }
   };

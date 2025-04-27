@@ -1,8 +1,10 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { Todo } from '../types/todo';
-import { TodoItem } from './TodoItem';
+
+import { StyleSheet, Text, View } from 'react-native';
+
 import { TodoInput } from './TodoInput';
+import { TodoItem } from './TodoItem';
+import { Todo } from '../types/todo';
 interface TodoListProps {
   todos: Todo[];
   onToggle: (id: string) => void;
