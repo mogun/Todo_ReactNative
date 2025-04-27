@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { Todo } from "../types/todo";
 import { TodoItem } from "./TodoItem";
@@ -14,14 +14,16 @@ export const TodoList: React.FC<TodoListProps> = ({todos, onToggle, onDelete, on
   return (
     <View style={styles.container}>
       <TodoInput onAdd={onAdd} />
-      {todos.map((todo) => (
+      {todos.length === 0 ? (
+        <Text style={styles.noTodos}>No todos yet</Text>
+      ) : (todos.map((todo) => (
         <TodoItem
           key={todo.id}
           todo={todo}
           onToggle={onToggle}
           onDelete={onDelete}
         />
-      ))}
+      )))}
     </View>
   )
 }
@@ -32,9 +34,10 @@ const styles = StyleSheet.create({
     width: '100%',
     padding: 15,
   },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 15,
+  noTodos: {
+    textAlign: 'center',
+    marginTop: 20,
+    fontSize: 16,
+    color: '#666',
   },
 });
