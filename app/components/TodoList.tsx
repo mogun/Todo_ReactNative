@@ -12,7 +12,12 @@ interface TodoListProps {
   onAdd: (text: string) => void;
 }
 
-export const TodoList: React.FC<TodoListProps> = ({ todos, onToggle, onDelete, onAdd }) => {
+export const TodoList: React.FC<TodoListProps> = ({
+  todos,
+  onToggle,
+  onDelete,
+  onAdd,
+}) => {
   return (
     <View style={styles.container}>
       <TodoInput onAdd={onAdd} />
@@ -20,7 +25,12 @@ export const TodoList: React.FC<TodoListProps> = ({ todos, onToggle, onDelete, o
         <Text style={styles.noTodos}>No todos yet</Text>
       ) : (
         todos.map(todo => (
-          <TodoItem key={todo.id} todo={todo} onToggle={onToggle} onDelete={onDelete} />
+          <TodoItem
+            key={todo.id}
+            todo={todo}
+            onToggle={onToggle}
+            onDelete={onDelete}
+          />
         ))
       )}
     </View>

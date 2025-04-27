@@ -11,7 +11,11 @@ interface TodoItemProps {
   onDelete: (id: string) => void;
 }
 
-export const TodoItem: React.FC<TodoItemProps> = ({ todo, onToggle, onDelete }) => {
+export const TodoItem: React.FC<TodoItemProps> = ({
+  todo,
+  onToggle,
+  onDelete,
+}) => {
   return (
     <List.Item
       title={todo.text}
@@ -21,7 +25,9 @@ export const TodoItem: React.FC<TodoItemProps> = ({ todo, onToggle, onDelete }) 
           onPress={() => onToggle(todo.id)}
         />
       )}
-      right={() => <IconButton icon="delete" onPress={() => onDelete(todo.id)} />}
+      right={() => (
+        <IconButton icon="delete" onPress={() => onDelete(todo.id)} />
+      )}
       titleStyle={todo.completed ? styles.completed : undefined}
     />
   );
