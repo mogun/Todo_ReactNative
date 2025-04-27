@@ -2,6 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, SafeAreaView, ActivityIndicator } from 'react-native';
 import { TodoList } from './app/components/TodoList';
 import { useTodos } from './app/hooks/useTodos';
+import { Provider as PaperProvider } from 'react-native-paper';
 
 export default function App() {
   const { todos, loading, error, addTodo, toggleTodo, deleteTodo } = useTodos();
@@ -15,12 +16,14 @@ export default function App() {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
-      <Text style={styles.title}>Todo List</Text>
-      {error && <Text style={styles.errorText}>{error}</Text>}
-      <TodoList todos={todos} onToggle={toggleTodo} onDelete={deleteTodo} onAdd={addTodo} />
-      <StatusBar style="auto" />
-    </SafeAreaView>
+    <PaperProvider>
+      <SafeAreaView style={styles.container}>
+        <Text style={styles.title}>Todo List</Text>
+        {error && <Text style={styles.errorText}>{error}</Text>}
+        <TodoList todos={todos} onToggle={toggleTodo} onDelete={deleteTodo} onAdd={addTodo} />
+        <StatusBar style="auto" />
+      </SafeAreaView>
+    </PaperProvider>
   );
 }
 
