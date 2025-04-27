@@ -1,14 +1,14 @@
-import React from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
-import { Todo } from "../types/todo";
+import React from 'react';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { Todo } from '../types/todo';
 
 interface TodoItemProps {
-  todo: Todo,
-  onToggle: (id: string) => void,
-  onDelete: (id: string) => void,
+  todo: Todo;
+  onToggle: (id: string) => void;
+  onDelete: (id: string) => void;
 }
 
-export const TodoItem: React.FC<TodoItemProps> = ({todo, onToggle, onDelete}) => {
+export const TodoItem: React.FC<TodoItemProps> = ({ todo, onToggle, onDelete }) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={() => onToggle(todo.id)}>
@@ -17,7 +17,7 @@ export const TodoItem: React.FC<TodoItemProps> = ({todo, onToggle, onDelete}) =>
       <TouchableOpacity onPress={() => onDelete(todo.id)}>
         <Text style={styles.deleteButton}>Delete</Text>
       </TouchableOpacity>
-      <TouchableOpacity 
+      <TouchableOpacity
         style={styles.toggleContainer}
         onPress={() => onToggle(todo.id)}
         accessible={true}
@@ -25,8 +25,8 @@ export const TodoItem: React.FC<TodoItemProps> = ({todo, onToggle, onDelete}) =>
         accessibilityHint={`タップして${todo.completed ? '未完了' : '完了済み'}に変更`}
       ></TouchableOpacity>
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   container: {

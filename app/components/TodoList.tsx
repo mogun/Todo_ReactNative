@@ -1,32 +1,29 @@
-import React from "react";
-import { View, Text, StyleSheet } from "react-native";
-import { Todo } from "../types/todo";
-import { TodoItem } from "./TodoItem";
-import { TodoInput } from "./TodoInput";
+import React from 'react';
+import { View, Text, StyleSheet } from 'react-native';
+import { Todo } from '../types/todo';
+import { TodoItem } from './TodoItem';
+import { TodoInput } from './TodoInput';
 interface TodoListProps {
-  todos: Todo[],
-  onToggle: (id: string) => void,
-  onDelete: (id: string) => void,
-  onAdd: (text: string) => void,
+  todos: Todo[];
+  onToggle: (id: string) => void;
+  onDelete: (id: string) => void;
+  onAdd: (text: string) => void;
 }
 
-export const TodoList: React.FC<TodoListProps> = ({todos, onToggle, onDelete, onAdd}) => {
+export const TodoList: React.FC<TodoListProps> = ({ todos, onToggle, onDelete, onAdd }) => {
   return (
     <View style={styles.container}>
       <TodoInput onAdd={onAdd} />
       {todos.length === 0 ? (
         <Text style={styles.noTodos}>No todos yet</Text>
-      ) : (todos.map((todo) => (
-        <TodoItem
-          key={todo.id}
-          todo={todo}
-          onToggle={onToggle}
-          onDelete={onDelete}
-        />
-      )))}
+      ) : (
+        todos.map(todo => (
+          <TodoItem key={todo.id} todo={todo} onToggle={onToggle} onDelete={onDelete} />
+        ))
+      )}
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   container: {

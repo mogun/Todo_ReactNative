@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from "react-native";
+import React, { useState } from 'react';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
 
 interface TodoInputProps {
-  onAdd: (text: string) => void,
+  onAdd: (text: string) => void;
 }
 
-export const TodoInput: React.FC<TodoInputProps> = ({onAdd}) => {
+export const TodoInput: React.FC<TodoInputProps> = ({ onAdd }) => {
   const [text, setText] = useState('');
 
   const handleTextChange = (text: string) => {
@@ -14,7 +14,7 @@ export const TodoInput: React.FC<TodoInputProps> = ({onAdd}) => {
       return;
     }
     setText(text);
-  }
+  };
 
   const handleAdd = () => {
     const trimmedText = text.trim();
@@ -28,7 +28,7 @@ export const TodoInput: React.FC<TodoInputProps> = ({onAdd}) => {
     }
     onAdd(trimmedText);
     setText('');
-  }
+  };
 
   return (
     <View style={styles.container}>
@@ -43,12 +43,16 @@ export const TodoInput: React.FC<TodoInputProps> = ({onAdd}) => {
         onSubmitEditing={handleAdd}
         autoCorrect={false}
       />
-      <TouchableOpacity style={[styles.addButton, !text.trim() && styles.addButtonDisabled]} onPress={handleAdd} disabled={!text.trim()}>
+      <TouchableOpacity
+        style={[styles.addButton, !text.trim() && styles.addButtonDisabled]}
+        onPress={handleAdd}
+        disabled={!text.trim()}
+      >
         <Text style={styles.addButtonText}>Add</Text>
       </TouchableOpacity>
     </View>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   container: {

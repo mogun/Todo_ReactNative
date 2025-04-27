@@ -1,10 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, SafeAreaView, ActivityIndicator } from 'react-native';
+import { StyleSheet, Text, SafeAreaView, ActivityIndicator } from 'react-native';
 import { TodoList } from './app/components/TodoList';
-import { useState, useEffect } from 'react';
-import { Todo } from './app/types/todo';
-import uuid from "react-native-uuid";
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useTodos } from './app/hooks/useTodos';
 
 export default function App() {
@@ -15,19 +11,14 @@ export default function App() {
       <SafeAreaView style={styles.container}>
         <ActivityIndicator size="large" color="#0000ff" />
       </SafeAreaView>
-    )
+    );
   }
 
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.title}>Todo List</Text>
       {error && <Text style={styles.errorText}>{error}</Text>}
-      <TodoList
-        todos={todos}
-        onToggle={toggleTodo}
-        onDelete={deleteTodo}
-        onAdd={addTodo}
-      />
+      <TodoList todos={todos} onToggle={toggleTodo} onDelete={deleteTodo} onAdd={addTodo} />
       <StatusBar style="auto" />
     </SafeAreaView>
   );
