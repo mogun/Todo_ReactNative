@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { TodoList } from './app/components/TodoList';
 import { useState, useEffect } from 'react';
 import { Todo } from './app/types/todo';
-import { v4 as uuidv4 } from 'uuid';
+import uuid from "react-native-uuid";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const TODOS_STORAGE_KEY = '@todos';
@@ -37,7 +37,7 @@ export default function App() {
   }
 
   const handleAdd = (text: string) => {
-    setTodos([...todos, {id: uuidv4(), text, completed: false}]);
+    setTodos([...todos, {id: uuid.v4().toString(), text, completed: false}]);
   }
   
   return (
