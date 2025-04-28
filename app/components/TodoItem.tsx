@@ -34,7 +34,7 @@ export const TodoItem: React.FC<TodoItemProps> = ({
       right={_ => (
         <IconButton
           icon="delete"
-          iconColor="#F44336"
+          iconColor="#0088ff"
           onPress={() => onDelete(todo.id)}
           size={20}
         />
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
   },
   completed: {
     textDecorationLine: 'line-through',
-    color: '#888',
+    color: '#9e9e9e',
   },
   listItem: {
     paddingVertical: 4,

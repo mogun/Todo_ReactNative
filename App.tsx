@@ -26,6 +26,13 @@ export default function App() {
 
   return (
     <PaperProvider
+      theme={{
+        colors: {
+          primary: '#0088ff',
+          secondary: '#03dac6',
+          background: '#fff',
+        },
+      }}
       settings={{
         rippleEffectEnabled: true,
       }}
@@ -48,22 +55,27 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#f0f8ff',
   },
   title: {
-    fontSize: 24,
+    fontSize: 28,
     fontWeight: 'bold',
     textAlign: 'center',
     marginVertical: 20,
+    color: '#1a1a1a',
   },
   loadingText: {
-    marginTop: 10,
+    marginTop: 16,
     textAlign: 'center',
-    color: '#666',
+    color: '#757575',
+    fontSize: 16,
   },
   errorText: {
-    color: '#ff3b30',
+    color: '#d32f2f',
     textAlign: 'center',
     marginBottom: 10,
+    backgroundColor: '#ffebee',
+    padding: 8,
+    borderRadius: 4,
   },
 });

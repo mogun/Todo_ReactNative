@@ -63,6 +63,7 @@ const styles = StyleSheet.create({
   container: {
     width: '100%',
     padding: 16,
+    backgroundColor: '#f0f8ff',
   },
   inputContainer: {
     flexDirection: 'row',
@@ -71,9 +72,12 @@ const styles = StyleSheet.create({
   },
   input: {
     flex: 1,
+    backgroundColor: '#fff',
   },
   button: {
     minWidth: 80,
+    backgroundColor: '#0088ff',
     justifyContent: 'center',
+    borderRadius: 8,
   },
 });
