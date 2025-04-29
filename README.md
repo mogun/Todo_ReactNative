@@ -4,7 +4,7 @@ React NativeとExpoを使用して開発されたシンプルなTodoアプリケ
 
 ## スクリーンショット
 
-![Todo App Screenshot](image.png)
+<img src="image.png" alt="Todo App Screenshot" width="300" />
 
 ## 機能
 
